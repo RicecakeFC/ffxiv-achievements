@@ -1,6 +1,15 @@
 <template>
   <el-config-provider :locale="locale">
-    <router-view />
+    <el-container>
+      <el-aside> aside </el-aside>
+      <el-container>
+        <el-header> header </el-header>
+        <el-main>
+          <router-view />
+        </el-main>
+        <el-footer> footer </el-footer>
+      </el-container>
+    </el-container>
   </el-config-provider>
 </template>
 <script>
