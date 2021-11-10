@@ -7,6 +7,7 @@ const Components = require('unplugin-vue-components/webpack');
 module.exports = {
   outputDir: '../../dist/src/render',
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
+
   configureWebpack: {
     plugins: [
       Components({
@@ -14,4 +15,16 @@ module.exports = {
       }),
     ],
   },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'zh-CN',
+      fallbackLocale: 'zh-CN',
+      localeDir: 'locales',
+      enableLegacy: false,
+      runtimeOnly: false,
+      compositionOnly: false,
+      fullInstall: true
+    }
+  }
 };
