@@ -5,7 +5,7 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <img :src="logo" />
           </q-avatar>
           Title
         </q-toolbar-title>
@@ -16,7 +16,7 @@
 
     <TopNav v-model="leftDrawerOpen" />
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
     </q-drawer>
 
@@ -26,7 +26,7 @@
 
     <q-footer bordered class="bg-grey-8 text-white">
       <q-toolbar>
-        <q-toolbar-title> footer</q-toolbar-title>
+        <q-toolbar-title>footer</q-toolbar-title>
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -35,6 +35,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import TopNav from '@/components/TopNav.vue';
+
+import logo from 'Assets/favicon.webp';
 
 const leftDrawerOpen = ref(false);
 const toggleLeftDrawer = () => {

@@ -1,4 +1,6 @@
+/* eslint-disable */
 // vue.config.js
+const path = require('path');
 // const { QuasarResolver } = require('unplugin-vue-components/resolvers');
 // const Components = require('unplugin-vue-components/webpack');
 /**
@@ -9,6 +11,11 @@ module.exports = {
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
 
   configureWebpack: {
+    resolve: {
+      alias: {
+        Assets: path.resolve(__dirname, '../../assets/'),
+      },
+    },
     plugins: [
       // Components({
       //   resolvers: [ElementPlusResolver()],
