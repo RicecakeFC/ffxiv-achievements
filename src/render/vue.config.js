@@ -34,6 +34,9 @@ module.exports = {
       rtlSupport: false,
       supportTS: true,
     },
+    webpackBundleAnalyzer: {
+      openAnalyzer: false,
+    },
   },
 
   transpileDependencies: ['quasar'],
