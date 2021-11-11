@@ -1,6 +1,6 @@
 // vue.config.js
-const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
-const Components = require('unplugin-vue-components/webpack');
+// const { QuasarResolver } = require('unplugin-vue-components/resolvers');
+// const Components = require('unplugin-vue-components/webpack');
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
@@ -10,12 +10,12 @@ module.exports = {
 
   configureWebpack: {
     plugins: [
-      Components({
-        resolvers: [ElementPlusResolver()],
-      }),
-      require('unplugin-element-plus/webpack').default({
-        // options
-      }),
+      // Components({
+      //   resolvers: [ElementPlusResolver()],
+      // }),
+      // require('unplugin-element-plus/webpack').default({
+      //   // options
+      // }),
     ],
   },
 
@@ -27,7 +27,7 @@ module.exports = {
       enableLegacy: false,
       runtimeOnly: false,
       compositionOnly: false,
-      fullInstall: true
-    }
-  }
+      fullInstall: true,
+    },
+  },
 };
