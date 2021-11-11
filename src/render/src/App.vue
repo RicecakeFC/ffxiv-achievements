@@ -33,19 +33,67 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import TopNav from '@/components/TopNav.vue';
-
 import logo from 'Assets/favicon.webp';
+import { setCssVar, useQuasar } from 'quasar';
 
+// top tool bar
+// eslint-disable-next-line no-undef
+
+// left nav
 const leftDrawerOpen = ref(false);
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-// right drawer
+// right panel
 const rightDrawerOpen = ref(false);
 const toggleRightDrawer = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 };
+
+// color theme
+const $q = useQuasar();
+watchEffect(() => {
+  if ($q.dark.isActive) {
+    setCssVar('primary', '#1c7c54');
+    setCssVar('secondary', '#2a9d8f');
+    setCssVar('accent', '#2a9d8f');
+    setCssVar('info', '#38669b');
+    setCssVar('warning', '#b68738');
+    setCssVar('error', '#c14953');
+    setCssVar('success', '#2a9d8f');
+    setCssVar('system', '#272727');
+    setCssVar('inner', '#2d2d32');
+    setCssVar('background', '#33333d');
+    setCssVar('selected', '#ffffff');
+    setCssVar('fishing', '#22362b');
+    setCssVar('fishingSecondary', '#183027');
+    setCssVar('completed', '#173251');
+    setCssVar('completedSecondary', '#0c2242');
+    setCssVar('waiting', '#2d2d32');
+    setCssVar('waitingSecondary', '#272727');
+    setCssVar('predatorCnt', '#b68738');
+  } else {
+    setCssVar('primary', '#82C79D');
+    setCssVar('secondary', '#2a9d8f');
+    setCssVar('accent', '#2a9d8f');
+    setCssVar('info', '#38669b');
+    setCssVar('warning', '#b68738');
+    setCssVar('error', '#c14953');
+    setCssVar('success', '#1c7c54');
+    setCssVar('system', '#e3e5e8');
+    setCssVar('inner', '#EBECEF');
+    setCssVar('background', '#f2f3f5');
+    setCssVar('selected', '#F5F5F4');
+    setCssVar('fishing', '#1c7c54');
+    setCssVar('fishingSecondary', '#9ec483');
+    setCssVar('completed', '#82C79D');
+    setCssVar('completedSecondary', '#98c1d9');
+    setCssVar('waiting', '#aed9e0');
+    setCssVar('waitingSecondary', '#F1E6D3');
+    setCssVar('predatorCnt', '#faf3dd');
+  }
+});
 </script>

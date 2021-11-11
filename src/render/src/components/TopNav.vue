@@ -11,7 +11,6 @@
     mini-to-overlay
     :width="200"
     :breakpoint="500"
-    class="bg-grey-3"
   >
     <q-list padding>
       <template v-for="(item, i) in navItems" :key="i">

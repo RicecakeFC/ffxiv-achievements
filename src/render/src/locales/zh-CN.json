@@ -5,5 +5,14 @@
       "card": "九宫幻卡",
       "setting": "设置"
     }
+  },
+  "setting": {
+    "display": {
+      "title": "显示",
+      "darkMode": "主题",
+      "dark": "深色主题",
+      "light": "浅色主题",
+      "auto": "系统"
+    }
   }
 }
