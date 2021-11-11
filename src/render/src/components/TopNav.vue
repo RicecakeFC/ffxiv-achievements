@@ -1,7 +1,7 @@
 <template>
   <q-drawer
-    :value="value"
-    @input="$emit('input', value)"
+    :model-value="show"
+    @update:model-value="$emit('update:show', $event)"
     side="left"
     bordered
     show-if-above
@@ -33,7 +33,11 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 defineProps<{
-  value: boolean;
+  show: boolean;
+}>();
+
+defineEmits<{
+  (e: 'update:show', value: boolean): void;
 }>();
 
 const { t } = useI18n();

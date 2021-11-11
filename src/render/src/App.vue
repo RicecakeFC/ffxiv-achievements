@@ -1,11 +1,11 @@
 <template>
-  <q-layout view="hHh LpR lfr">
+  <q-layout view="hHr LpR lfr">
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           <q-avatar>
-            <img :src="logo" />
+            <img :src="logo" alt="logo" />
           </q-avatar>
           Title
         </q-toolbar-title>
@@ -14,7 +14,7 @@
       </q-toolbar>
     </q-header>
 
-    <TopNav v-model="leftDrawerOpen" />
+    <TopNav v-model:show="leftDrawerOpen" />
 
     <q-drawer v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
