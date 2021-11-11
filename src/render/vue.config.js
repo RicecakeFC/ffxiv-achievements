@@ -29,5 +29,12 @@ module.exports = {
       compositionOnly: false,
       fullInstall: true,
     },
+    quasar: {
+      importStrategy: 'kebab',
+      rtlSupport: false,
+      supportTS: true,
+    },
   },
+
+  transpileDependencies: ['quasar'],
 };

@@ -1,83 +1,114 @@
 <template>
-  <el-config-provider :locale="locale">
-    <el-container>
-      <el-header
-          style="border-bottom: solid #d9d9d9 1px; position:fixed; z-index: 1; background-color: #ffffff; width: 100%">
-        <el-row style="height: inherit; display: flex; align-items: center">
-          <el-space>
-            <el-image
-                style="width: 40px; height: 40px"
-                :src="logo"
-                fit="contain"
-            ></el-image>
-            <div style="font-size: var(--el-font-size-extra-large)">金平糖</div>
-            <el-tag>Ver.0.0.1</el-tag>
-          </el-space>
-        </el-row>
-      </el-header>
-      <el-container style="margin-top: 60px; height: 100vh">
-        <el-aside width="64px" style="position:fixed;height: 100%">
-          <TopNav style="height: 100%"/>
-        </el-aside>
-        <el-container style="margin-left: 64px">
-          <el-main style="height: 2000px; background-color: #42b983">
-            <router-view/>
-          </el-main>
-          <el-footer height="32px" class="footer">
-            <div style="display: flex; justify-content: space-between; align-items: center; height: inherit">
-              <div style="">{{ t('footer.contact') }}</div>
-              <div>{{t('footer.ffRights')}}</div>
-            </div>
-          </el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
-  </el-config-provider>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated class="glossy">
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
+        />
+
+        <q-toolbar-title> Quasar App</q-toolbar-title>
+
+        <div>Quasar v{{ $q.version }}</div>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-grey-2">
+      <q-list>
+        <q-item-label header>Essential Links</q-item-label>
+        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Docs</q-item-label>
+            <q-item-label caption>quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          tag="a"
+          target="_blank"
+          href="https://github.com/quasarframework/"
+        >
+          <q-item-section avatar>
+            <q-icon name="code" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Github</q-item-label>
+            <q-item-label caption>github.com/quasarframework</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          tag="a"
+          target="_blank"
+          href="https://chat.quasar.dev"
+        >
+          <q-item-section avatar>
+            <q-icon name="chat" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Discord Chat Channel</q-item-label>
+            <q-item-label caption>chat.quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          tag="a"
+          target="_blank"
+          href="https://forum.quasar.dev"
+        >
+          <q-item-section avatar>
+            <q-icon name="forum" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Forum</q-item-label>
+            <q-item-label caption>forum.quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          tag="a"
+          target="_blank"
+          href="https://twitter.com/quasarframework"
+        >
+          <q-item-section avatar>
+            <q-icon name="rss_feed" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Twitter</q-item-label>
+            <q-item-label caption>@quasarframework</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <HelloWorld />
+    </q-page-container>
+  </q-layout>
 </template>
+
 <script>
-import { defineComponent } from 'vue';
-import { ElConfigProvider } from 'element-plus';
+import { ref } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 
-import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import TopNav from '@/components/TopNav';
-import logo from '../../../assets/favicon.png'
-import { useI18n } from 'vue-i18n';
+export default {
+  name: 'LayoutDefault',
 
-export default defineComponent({
   components: {
-    TopNav,
-    ElConfigProvider,
+    HelloWorld,
   },
+
   setup() {
-    const { t } = useI18n({
-      inheritLocale: true,
-      useScope: 'local'
-    })
     return {
-      locale: zhCn,
-      logo: logo,
-      t,
+      leftDrawerOpen: ref(false),
     };
   },
-});
+};
 </script>
-
-<style>
-body {
-  margin: 0;
-}
-.footer {
-  font-size: var(--el-font-size-small);
-}
-</style>
-
-<i18n>
-{
-  "zh-CN": {
-    "footer": {
-      "contact": "群：1153646847 红豆年糕{'@'}海猫茶屋",
-      "ffRights": "FINAL FANTASY XIV © 2010 - 2021 SQUARE ENIX CO., LTD. All Rights Reserved."
-    }
-  }
-}
-</i18n>
