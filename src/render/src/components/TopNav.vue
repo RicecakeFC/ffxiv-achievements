@@ -32,11 +32,11 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n({ useScope: 'global' });
-
-const props = defineProps<{
+defineProps<{
   value: boolean;
 }>();
+
+const { t } = useI18n({ useScope: 'global' });
 
 interface NavItem {
   type: string;

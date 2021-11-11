@@ -5,12 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix",
     "build:electron": "vue-cli-service build --mode electron",
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
+    "quasar": "^2.3.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-i18n": "^9.1.0",
