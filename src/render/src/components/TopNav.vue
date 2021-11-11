@@ -1,42 +1,75 @@
 <template>
-  <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
+  <q-drawer
+    :value="value"
+    @input="$emit('input', value)"
+    side="left"
+    bordered
+    show-if-above
+    :mini="miniState"
+    @mouseover="miniState = false"
+    @mouseout="miniState = true"
+    mini-to-overlay
+    :width="200"
+    :breakpoint="500"
+    class="bg-grey-3"
   >
-    <el-menu-item index="1">
-      <el-icon><postcard /></el-icon>
-      <template #title>Triple Triad Card</template>
-    </el-menu-item>
-  </el-menu>
+    <q-list padding>
+      <template v-for="(item, i) in navItems" :key="i">
+        <q-separator v-if="item.type === 'separator'" />
+        <q-item v-else clickable v-ripple :to="item.to">
+          <q-item-section avatar>
+            <q-icon :name="item.icon" />
+          </q-item-section>
+
+          <q-item-section>{{ item.title }}</q-item-section>
+        </q-item>
+      </template>
+    </q-list>
+  </q-drawer>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
-import { Postcard } from '@element-plus/icons';
+import { useI18n } from 'vue-i18n';
 
-export default {
-  name: 'TopNav',
-  components: {
-    Postcard,
-  },
-  setup() {
-    const isCollapse = ref(true);
-    const handleOpen = (key: string, keyPath: string) => {
-      console.log(key, keyPath);
-    };
-    const handleClose = (key: string, keyPath: string) => {
-      console.log(key, keyPath);
-    };
-    return {
-      isCollapse,
-      handleOpen,
-      handleClose,
-    };
-  },
+const { t } = useI18n({ useScope: 'global' });
+
+const props = defineProps<{
+  value: boolean;
+}>();
+
+interface NavItem {
+  type: string;
+  title?: string;
+  to?: string;
+  icon?: string;
+}
+
+const Separator: NavItem = {
+  type: 'separator',
 };
-</script>
 
-<style scoped></style>
+// left nav
+const miniState = ref(true);
+const navItems: NavItem[] = [
+  {
+    type: 'Home',
+    title: t('top.nav.home'),
+    to: '/',
+    icon: 'home',
+  },
+  {
+    type: 'Card',
+    title: t('top.nav.card'),
+    to: '/card',
+    icon: 'view_module',
+  },
+  Separator,
+  {
+    type: 'Setting',
+    title: t('top.nav.setting'),
+    to: '/setting',
+    icon: 'settings',
+  },
+];
+</script>
