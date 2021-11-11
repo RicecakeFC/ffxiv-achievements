@@ -36,7 +36,7 @@ defineProps<{
   value: boolean;
 }>();
 
-const { t } = useI18n({ useScope: 'global' });
+const { t } = useI18n();
 
 interface NavItem {
   type: string;
