@@ -7,7 +7,7 @@
           <q-avatar>
             <img :src="logo" alt="logo" />
           </q-avatar>
-          Title
+          Title {{ darkMode }}
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -33,10 +33,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
+import { setCssVar, useQuasar } from 'quasar';
+
 import TopNav from '@/components/TopNav.vue';
 import logo from 'Assets/favicon.webp';
-import { setCssVar, useQuasar } from 'quasar';
+
+import { useStore } from '@/store';
+const store = useStore();
 
 // top tool bar
 // eslint-disable-next-line no-undef
@@ -55,6 +59,12 @@ const toggleRightDrawer = () => {
 
 // color theme
 const $q = useQuasar();
+
+const darkMode = computed(() => store.state.userConfig?.darkMode ?? true);
+watchEffect(() => {
+  $q.dark.set(darkMode.value);
+});
+
 watchEffect(() => {
   if ($q.dark.isActive) {
     setCssVar('primary', '#1c7c54');

@@ -67,21 +67,27 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useStore } from '@/store';
 
 const { t } = useI18n();
-const $q = useQuasar();
-
-type DarkModeOption = boolean | 'auto';
-
-const darkMode = computed<DarkModeOption>({
-  get: () => $q.dark.mode,
-  set: (val) => {
-    $q.dark.set(val);
-  },
+const store = useStore();
+const darkMode = computed({
+  get: () => store.state.userConfig?.darkMode ?? true,
+  set: (val) => store.commit('userConfig/setState', { darkMode: val }),
 });
+
+// const $q = useQuasar();
+//
+// type DarkModeOption = boolean | 'auto';
+//
+// const darkMode = computed<DarkModeOption>({
+//   get: () => $q.dark.mode,
+//   set: (val) => {
+//     $q.dark.set(val);
+//   },
+// });
 
 const tab = ref('display');
 </script>
