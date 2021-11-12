@@ -14,7 +14,7 @@
     "electron:pack": "del-cli release/* && yarn electron:build && electron-builder -w",
     "electron:unpacked": "del-cli release/* && yarn electron:build && electron-builder -w --dir",
     "prepare": "husky install",
-    "lint": "eslint"
+    "lint:fix": "eslint --fix && cd src/render && yarn lint:fix"
   },
   "build": {
     "appId": "ffxiv-achievements",
