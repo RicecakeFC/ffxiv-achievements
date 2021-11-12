@@ -12,7 +12,9 @@
     "elecront:buildAll": "yarn electron:buildRender && yarn electron:build",
     "electron:start": "yarn electron:build && yarn electron ./dist/src/main/main.js",
     "electron:pack": "del-cli release/* && yarn electron:build && electron-builder -w",
-    "electron:unpacked": "del-cli release/* && yarn electron:build && electron-builder -w --dir"
+    "electron:unpacked": "del-cli release/* && yarn electron:build && electron-builder -w --dir",
+    "prepare": "husky install",
+    "lint": "eslint"
   },
   "build": {
     "appId": "ffxiv-achievements",
@@ -35,6 +37,8 @@
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
@@ -47,6 +51,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "husky": "^7.0.0",
     "prettier": "2.4.1",
     "typescript": "^4.4.4"
   },
